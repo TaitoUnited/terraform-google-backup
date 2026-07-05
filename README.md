@@ -1,4 +1,4 @@
-# Google Cloud databases
+# Google Cloud backup
 
 Example usage:
 
