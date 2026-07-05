@@ -10,14 +10,17 @@ provider "google" {
   zone                = "europe-west3-b"
 }
 
-resource "google_project_service" "backupdr" {
+resource "google_project_service" "backup_backupdr" {
+  provider            = google.backup
   service             = "backupdr.googleapis.com"
 }
 
 module "backup" {
   source              = "TaitoUnited/backup/google"
   version             = "1.0.0"
-  depends_on          = [ google_project_service.backupdr ]
+  depends_on          = [
+    google_project_service.backup_backupdr,
+  ]
 
   providers = {
     /* Place backups to another GCP project */
